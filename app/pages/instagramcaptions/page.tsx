@@ -101,17 +101,17 @@ const InstagramCaptionGenerator = () => {
   };
 
   return (
-    <div className="min-h-screen bg-black-50 p-4 md:p-8">
+    <div className="min-h-screen bg-gray-50 p-4 md:p-8">
       <div className="max-w-4xl mx-auto">
         <div className="bg-white rounded-xl shadow-lg p-6 mb-8">
           <div className="flex items-center gap-3 mb-6">
-            <h1 className="text-2xl font-bold text-black-800">Instagram Caption Generator</h1>
+            <h1 className="text-2xl font-bold text-gray-800">Instagram Caption Generator</h1>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Quote Length */}
             <div>
-              <label className="block text-sm font-medium text-black-700 mb-2">
+              <label className="block text-sm font-medium text-gray-700 mb-2">
                 Caption Length
               </label>
               <div className="grid grid-cols-2 gap-4">
@@ -121,7 +121,7 @@ const InstagramCaptionGenerator = () => {
                   className={`p-4 rounded-lg border ${
                     formData.quoteLength === 'short' 
                       ? 'border-pink-500 bg-pink-50' 
-                      : 'border-black-200'
+                      : 'border-gray-200'
                   } hover:border-pink-500 transition-all`}
                 >
                   <span className="block text-sm">Short Caption</span>
@@ -132,7 +132,7 @@ const InstagramCaptionGenerator = () => {
                   className={`p-4 rounded-lg border ${
                     formData.quoteLength === 'long' 
                       ? 'border-pink-500 bg-pink-50' 
-                      : 'border-black-200'
+                      : 'border-gray-200'
                   } hover:border-pink-500 transition-all`}
                 >
                   <span className="block text-sm">Long Caption</span>
@@ -142,7 +142,7 @@ const InstagramCaptionGenerator = () => {
 
             {/* Background Selection */}
             <div>
-              <label className="block text-sm font-medium text-black-700 mb-2">
+              <label className="block text-sm font-medium text-gray-700 mb-2">
                 Background Type
               </label>
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
@@ -154,7 +154,7 @@ const InstagramCaptionGenerator = () => {
                     className={`p-4 rounded-lg border ${
                       formData.background === bg.toLowerCase()
                         ? 'border-pink-500 bg-pink-50'
-                        : 'border-black-200'
+                        : 'border-gray-200'
                     } hover:border-pink-500 transition-all`}
                   >
                     <span className="block text-sm">{bg}</span>
@@ -165,7 +165,7 @@ const InstagramCaptionGenerator = () => {
 
             {/* Group Photo Selection */}
             <div>
-              <label className="block text-sm font-medium text-black-700 mb-2">
+              <label className="block text-sm font-medium text-gray-700 mb-2">
                 Is this a group photo?
               </label>
               <div className="flex gap-4">
@@ -175,7 +175,7 @@ const InstagramCaptionGenerator = () => {
                   className={`flex-1 p-4 rounded-lg border ${
                     formData.isGroupPhoto === 'yes'
                       ? 'border-pink-500 bg-pink-50'
-                      : 'border-black-200'
+                      : 'border-gray-200'
                   } hover:border-pink-500 transition-all`}
                 >
                   <span className="block text-sm">Yes</span>
@@ -186,7 +186,7 @@ const InstagramCaptionGenerator = () => {
                   className={`flex-1 p-4 rounded-lg border ${
                     formData.isGroupPhoto === 'no'
                       ? 'border-pink-500 bg-pink-50'
-                      : 'border-black-200'
+                      : 'border-gray-200'
                   } hover:border-pink-500 transition-all`}
                 >
                   <span className="block text-sm">No</span>
@@ -197,7 +197,7 @@ const InstagramCaptionGenerator = () => {
             {/* Group Members (Conditional) */}
             {formData.isGroupPhoto === 'yes' && (
               <div>
-                <label className="block text-sm font-medium text-black-700 mb-2">
+                <label className="block text-sm font-medium text-gray-700 mb-2">
                   Who are you with?
                 </label>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
@@ -214,7 +214,7 @@ const InstagramCaptionGenerator = () => {
                       className={`p-4 rounded-lg border ${
                         formData.groupMembers.includes(member)
                           ? 'border-pink-500 bg-pink-50'
-                          : 'border-black-200'
+                          : 'border-gray-200'
                       } hover:border-pink-500 transition-all`}
                     >
                       <span className="block text-sm">{member}</span>
@@ -226,7 +226,7 @@ const InstagramCaptionGenerator = () => {
 
             {/* Mood Selection */}
             <div>
-              <label className="block text-sm font-medium text-black-700 mb-2">
+              <label className="block text-sm font-medium text-gray-700 mb-2">
                 What&apos;s your mood?
               </label>
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -238,7 +238,7 @@ const InstagramCaptionGenerator = () => {
                     className={`p-4 rounded-lg border ${
                       formData.mood === mood.toLowerCase()
                         ? 'border-pink-500 bg-pink-50'
-                        : 'border-black-200'
+                        : 'border-gray-200'
                     } hover:border-pink-500 transition-all`}
                   >
                     <span className="block text-sm">{mood}</span>
@@ -249,7 +249,7 @@ const InstagramCaptionGenerator = () => {
 
             {/* Custom Mood Input */}
             <div>
-              <label className="block text-sm font-medium text-black-700 mb-2">
+              <label className="block text-sm font-medium text-gray-700 mb-2">
                 Or describe your mood (optional)
               </label>
               <input
@@ -257,7 +257,7 @@ const InstagramCaptionGenerator = () => {
                 name="customMood"
                 value={formData.customMood}
                 onChange={handleInputChange}
-                className="w-full p-3 border border-black-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-pink-500"
+                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-pink-500"
                 placeholder="E.g., Adventurous, Peaceful, Excited..."
               />
             </div>
@@ -278,9 +278,9 @@ const InstagramCaptionGenerator = () => {
 
           {/* Generated Caption */}
           {generatedCaption && (
-            <div className="mt-8 p-6 bg-black-50 rounded-lg">
-              <h2 className="text-lg font-medium text-black-800 mb-3">Generated Caption:</h2>
-              <p className="text-black-600">{generatedCaption}</p>
+            <div className="mt-8 p-6 bg-gray-50 rounded-lg">
+              <h2 className="text-lg font-medium text-gray-800 mb-3">Generated Caption:</h2>
+              <p className="text-gray-600">{generatedCaption}</p>
               <button
                 onClick={() => {
                   navigator.clipboard.writeText(generatedCaption);
