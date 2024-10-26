@@ -9,7 +9,13 @@ import {
   CardGiftcard,
   EmojiEmotions,
   LocalActivity,
-  AutoAwesome
+  AutoAwesome,
+  AutoStories,
+  TheaterComedy,
+  Article,
+  Message,
+  FormatQuote,
+  Psychology
 } from '@mui/icons-material';
 
 const features = [
@@ -61,6 +67,49 @@ const features = [
     icon: <LocalActivity />,
     description: "Generate captions for special events",
     color: "from-indigo-500 to-purple-500"
+  },
+  // New Features
+  {
+    title: "Story Generator",
+    path: "pages/story",
+    icon: <AutoStories />,
+    description: "Create magical family-friendly stories",
+    color: "from-blue-400 to-blue-600"
+  },
+  {
+    title: "Joke Generator",
+    path: "pages/jokes",
+    icon: <TheaterComedy />,
+    description: "Generate family-friendly jokes and puns",
+    color: "from-yellow-400 to-yellow-600"
+  },
+  {
+    title: "Blog Ideas",
+    path: "pages/blogsideas",
+    icon: <Article />,
+    description: "Generate creative blog post ideas and outlines",
+    color: "from-emerald-500 to-green-600"
+  },
+  {
+    title: "Speech Writer",
+    path: "pages/speech",
+    icon: <Message />,
+    description: "Create compelling speeches for any occasion",
+    color: "from-violet-500 to-purple-600"
+  },
+  {
+    title: "Quote Generator",
+    path: "pages/quotes",
+    icon: <FormatQuote />,
+    description: "Generate inspirational and motivational quotes",
+    color: "from-amber-500 to-orange-600"
+  },
+  {
+    title: "Creative Writing",
+    path: "pages/creative",
+    icon: <Psychology />,
+    description: "Generate writing prompts and creative ideas",
+    color: "from-cyan-500 to-teal-600"
   }
 ];
 
@@ -93,8 +142,8 @@ export default function Home() {
 
   return (
     <div className="min-h-screen flex flex-col">
-            <main className="flex-grow bg-gray-50 py-12 px-4">
-        <div className="max-w-6xl mx-auto">
+      <main className="flex-grow bg-gray-50 py-12 px-4">
+        <div className="max-w-7xl mx-auto">
           {/* Hero Section */}
           <div className="text-center mb-16">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
@@ -117,6 +166,6 @@ export default function Home() {
           </div>
         </div>
       </main>
-  </div>
+    </div>
   );
 }
