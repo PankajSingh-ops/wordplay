@@ -13,7 +13,7 @@ const Header = () => {
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
     return (
-        <AppBar position="static">
+        <AppBar position="static" className='bg-pink-500'>
             <Toolbar>
                 {isMobile && (
                     <IconButton edge="start" color="inherit" aria-label="menu">
