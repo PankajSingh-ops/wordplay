@@ -118,7 +118,7 @@ const handleGenerateNames = async () => {
       try {
         // Attempt to parse JSON
         const data = JSON.parse(text);
-        const names = data?.names || [];  // Use optional chaining to safely access `names`
+        const names = data?.names || [];
         setGeneratedNames(names);
       } catch (jsonError) {
         console.error("Failed to parse JSON:", jsonError);
