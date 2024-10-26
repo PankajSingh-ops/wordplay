@@ -8,7 +8,6 @@ import {
   ContentCopyRounded,
   CheckCircleOutlineRounded
 } from '@mui/icons-material';
-import Header from '@/app/common/Header';
 
 // Define types
 interface OptionType {
@@ -206,7 +205,6 @@ const handleGenerateNames = async () => {
 
   return (
     <>
-    <Header/>
     <div className="min-h-screen bg-gradient-to-b from-pink-50 to-white p-4 md:p-8">
       <div className="max-w-4xl mx-auto">
         <div className="bg-white rounded-xl shadow-lg p-6">
