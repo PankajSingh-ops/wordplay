@@ -69,10 +69,22 @@ const ResumeBuilder = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [previewImage, setPreviewImage] = useState<any>(null);
 
+  const [imageError, setImageError] = useState(""); // State for image error message
+
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleImageChange = (event:any, setFieldValue:any) => {
     const file = event.target.files[0];
     if (file) {
+      // Check if the file size is greater than 1 MB
+      if (file.size > 1024 * 1024) {
+        setImageError("File size exceeds 1 MB. Please choose a smaller image.");
+        setFieldValue("profileImage", ""); // Clear the field if the size exceeds limit
+        setPreviewImage(null); // Reset the preview image
+        return;
+      } else {
+        setImageError(""); // Clear any previous error
+      }
+
       const reader = new FileReader();
       reader.onloadend = () => {
         setPreviewImage(reader.result);
@@ -81,6 +93,7 @@ const ResumeBuilder = () => {
       reader.readAsDataURL(file);
     }
   };
+
 
   const handleSubmit = async (
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -194,6 +207,12 @@ const ResumeBuilder = () => {
                           file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
                       />
                     </div>
+                    {imageError && (
+                        <div className="mt-2 text-red-600 flex items-center">
+                          <ErrorIcon className="mr-1" />
+                          <span>{imageError}</span>
+                        </div>
+                      )}
                   </div>
 
                   <div>
