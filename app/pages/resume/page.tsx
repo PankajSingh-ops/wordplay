@@ -12,7 +12,6 @@ import ImageIcon from '@mui/icons-material/Image';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import LanguageIcon from '@mui/icons-material/Language';
 import StyleIcon from '@mui/icons-material/Style';
-import Header from "@/app/common/Header";
 
 
 
@@ -137,7 +136,6 @@ const ResumeBuilder = () => {
 
   return (
     <>
-    <Header/>
     <div className="min-h-screen bg-gray-50 py-8 px-4">
       <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-6">
         <div className="flex items-center gap-2 mb-6">
