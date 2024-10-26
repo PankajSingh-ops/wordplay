@@ -8,10 +8,13 @@ export default function Home() {
    <>
    <Header/>
    <div onClick={()=>navigate.push("pages/instagramcaptions")}>
-    Instagram
+    Instagram Captions
    </div>
    <div onClick={()=>navigate.push("pages/resume")}>
-    Resume
+    Resume Generator
+   </div>
+   <div onClick={()=>navigate.push("pages/namegenerator")}>
+    Names Generator
    </div>
    </>
   );
