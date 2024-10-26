@@ -14,8 +14,6 @@ import {
   convertInchesToTwip,
   ImageRun
 } from 'docx';
-import { writeFileSync } from 'fs';
-import { join } from 'path';
 
 interface ResumeData {
     selectedTemplate: 'modern' | 'professional' | 'creative' | 'executive';
@@ -506,24 +504,28 @@ const generateSkillsSection = (skills: string, style: StyleConfig, template: Res
   );
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export async function POST(request:any) {
+export async function POST(request: Request) {
   try {
     const formData = await request.json();
     const docBuffer = await generateDocx(formData);
     
-    const sanitizedName = `${formData.firstName}-${formData.lastName}`.toLowerCase().replace(/[^a-z0-9]/g, '-');
+    // Create sanitized filename
+    const sanitizedName = `${formData.firstName}-${formData.lastName}`
+      .toLowerCase()
+      .replace(/[^a-z0-9]/g, '-');
     const fileName = `resume-${sanitizedName}-${Date.now()}.docx`;
-    
-    const publicDir = join(process.cwd(), 'public');
-    const filePath = join(publicDir, fileName);
-    
-    writeFileSync(filePath, docBuffer);
-    
-    return NextResponse.json({
-      message: 'Resume generated successfully!',
-      downloadUrl: `/${fileName}`,
+
+    // Create response with the file buffer
+    const response = new NextResponse(docBuffer, {
+      status: 200,
+      headers: {
+        'Content-Type': 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+        'Content-Disposition': `attachment; filename="${fileName}"`,
+        'Content-Length': docBuffer.length.toString()
+      },
     });
+
+    return response;
   } catch (error) {
     console.error('Resume generation error:', error);
     return NextResponse.json(

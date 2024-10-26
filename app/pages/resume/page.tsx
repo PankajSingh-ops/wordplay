@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Formik, Form, Field, FieldArray, FormikHelpers } from "formik";
+import { Formik, Form, Field, FieldArray } from "formik";
 import PersonIcon from '@mui/icons-material/Person';
 import WorkIcon from '@mui/icons-material/Work';
 import SchoolIcon from '@mui/icons-material/School';
@@ -95,34 +95,43 @@ const ResumeBuilder = () => {
   };
 
 
-  const handleSubmit = async (
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    values: any,
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    { setSubmitting, setStatus }: FormikHelpers<any>
-  ) => {    try {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const handleSubmit = async (formData:any) => {
+    try {
       const response = await fetch('/api/resume', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(values),
+        body: JSON.stringify(formData),
+        headers: {
+          'Content-Type': 'application/json',
+        },
       });
-
-      const result = await response.json();
-      if (result.downloadUrl) {
-        const link = document.createElement('a');
-        link.href = result.downloadUrl;
-        link.download = 'resume.docx';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-      } else {
-        setStatus({ error: result.error || 'Failed to generate resume' });
+  
+      if (!response.ok) {
+        throw new Error('Failed to generate resume');
       }
+  
+      // Get the filename from the Content-Disposition header
+      const contentDisposition = response.headers.get('Content-Disposition');
+      const fileName = contentDisposition
+        ? contentDisposition.split('filename=')[1].replace(/"/g, '')
+        : 'resume.docx';
+  
+      // Create a blob from the response
+      const blob = await response.blob();
+      
+      // Create a download link and trigger it
+      const downloadUrl = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = downloadUrl;
+      link.download = fileName;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      window.URL.revokeObjectURL(downloadUrl);
+  
     } catch (error) {
-      console.log(error);
-      setStatus({ error: 'Failed to generate resume. Please try again.' });
-    } finally {
-      setSubmitting(false);
+      console.error('Error generating resume:', error);
+      // Handle error appropriately
     }
   };
 
