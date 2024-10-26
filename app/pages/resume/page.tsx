@@ -141,7 +141,7 @@ const ResumeBuilder = () => {
     <div className="min-h-screen bg-gray-50 py-8 px-4">
       <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-6">
         <div className="flex items-center gap-2 mb-6">
-          <DescriptionIcon className="text-blue-600 text-3xl" />
+          <DescriptionIcon className="text-pink-600 text-3xl" />
           <h1 className="text-2xl font-bold text-gray-800">Resume Builder</h1>
         </div>
 
@@ -161,7 +161,7 @@ const ResumeBuilder = () => {
               {/* Template Selection */}
               <div className="border-b pb-6">
                 <div className="flex items-center gap-2 mb-4">
-                  <StyleIcon className="text-blue-600" />
+                  <StyleIcon className="text-pink-600" />
                   <h2 className="text-lg font-semibold text-gray-700">Choose Template</h2>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -169,8 +169,8 @@ const ResumeBuilder = () => {
                     <label 
                       key={template.id}
                       className={`
-                        border rounded-lg p-4 cursor-pointer hover:border-blue-500 transition
-                        ${values.selectedTemplate === template.id ? 'border-blue-500 bg-blue-50' : ''}
+                        border rounded-lg p-4 cursor-pointer hover:border-pink-500 transition
+                        ${values.selectedTemplate === template.id ? 'border-pink-500 bg-pink-50' : ''}
                       `}
                     >
                       <Field
@@ -189,7 +189,7 @@ const ResumeBuilder = () => {
               {/* Personal Information Section */}
               <div className="border-b pb-6">
                 <div className="flex items-center gap-2 mb-4">
-                  <PersonIcon className="text-blue-600" />
+                  <PersonIcon className="text-pink-600" />
                   <h2 className="text-lg font-semibold text-gray-700">Personal Information</h2>
                 </div>
                 
@@ -213,7 +213,7 @@ const ResumeBuilder = () => {
                         onChange={(e) => handleImageChange(e, setFieldValue)}
                         className="text-sm text-gray-500 file:mr-4 file:py-2 file:px-4
                           file:rounded-full file:border-0 file:text-sm file:font-semibold
-                          file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+                          file:bg-pink-50 file:text-pink-700 hover:file:bg-pink-100"
                       />
                     </div>
                     {imageError && (
@@ -231,7 +231,7 @@ const ResumeBuilder = () => {
                     <Field
                       name="firstName"
                       type="text"
-                      className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-blue-500"
+                      className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-pink-500"
                     />
                   </div>
 
@@ -242,7 +242,7 @@ const ResumeBuilder = () => {
                     <Field
                       name="lastName"
                       type="text"
-                      className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-blue-500"
+                      className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-pink-500"
                     />
                   </div>
 
@@ -253,7 +253,7 @@ const ResumeBuilder = () => {
                     <Field
                       name="dob"
                       type="date"
-                      className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-blue-500"
+                      className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-pink-500"
                     />
                   </div>
 
@@ -264,7 +264,7 @@ const ResumeBuilder = () => {
                     <Field
                       as="select"
                       name="gender"
-                      className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-blue-500"
+                      className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-pink-500"
                     >
                       <option value="">Select Gender</option>
                       {GENDER_OPTIONS.map(option => (
@@ -282,7 +282,7 @@ const ResumeBuilder = () => {
                     <Field
                       as="select"
                       name="maritalStatus"
-                      className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-blue-500"
+                      className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-pink-500"
                     >
                       <option value="">Select Marital Status</option>
                       {MARITAL_STATUS_OPTIONS.map(option => (
@@ -300,7 +300,7 @@ const ResumeBuilder = () => {
                     <Field
                       name="email"
                       type="email"
-                      className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-blue-500"
+                      className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-pink-500"
                     />
                   </div>
 
@@ -311,7 +311,7 @@ const ResumeBuilder = () => {
                     <Field
                       name="phoneNumber"
                       type="tel"
-                      className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-blue-500"
+                      className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-pink-500"
                     />
                   </div>
 
@@ -324,7 +324,7 @@ const ResumeBuilder = () => {
                       <Field
                         name="linkedin"
                         type="url"
-                        className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-blue-500"
+                        className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-pink-500"
                         placeholder="https://linkedin.com/in/yourprofile"
                       />
                     </div>
@@ -339,7 +339,7 @@ const ResumeBuilder = () => {
                       <Field
                         name="website"
                         type="url"
-                        className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-blue-500"
+                        className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-pink-500"
                         placeholder="https://yourwebsite.com"
                       />
                     </div>
@@ -353,7 +353,7 @@ const ResumeBuilder = () => {
                       name="objective"
                       as="textarea"
                       rows="4"
-                      className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-blue-500"
+                      className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-pink-500"
                       placeholder="Brief summary of your career objectives..."
                     />
                   </div>
@@ -363,7 +363,7 @@ const ResumeBuilder = () => {
               {/* Work Experience Section */}
               <div className="border-b pb-6">
                 <div className="flex items-center gap-2 mb-4">
-                  <WorkIcon className="text-blue-600" />
+                  <WorkIcon className="text-pink-600" />
                   <h2 className="text-lg font-semibold text-gray-700">Work Experience</h2>
                 </div>
 
@@ -392,7 +392,7 @@ const ResumeBuilder = () => {
                               <Field
                                 name={`workExperience.${index}.jobTitle`}
                                 type="text"
-                                className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-blue-500"
+                                className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-pink-500"
                               />
                             </div>
                             <div>
@@ -402,7 +402,7 @@ const ResumeBuilder = () => {
                               <Field
                                 name={`workExperience.${index}.companyName`}
                                 type="text"
-                                className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-blue-500"
+                                className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-pink-500"
                               />
                             </div>
                             <div>
@@ -412,7 +412,7 @@ const ResumeBuilder = () => {
                               <Field
                                 name={`workExperience.${index}.city`}
                                 type="text"
-                                className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-blue-500"
+                                className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-pink-500"
                               />
                             </div>
                             <div>
@@ -422,7 +422,7 @@ const ResumeBuilder = () => {
                                 <Field
                                 name={`workExperience.${index}.startDate`}
                                 type="date"
-                                className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-blue-500"
+                                className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-pink-500"
                               />
                             </div>
                             <div>
@@ -432,7 +432,7 @@ const ResumeBuilder = () => {
                               <Field
                                 name={`workExperience.${index}.endDate`}
                                 type="date"
-                                className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-blue-500"
+                                className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-pink-500"
                               />
                             </div>
                             <div className="md:col-span-2">
@@ -443,7 +443,7 @@ const ResumeBuilder = () => {
                                 name={`workExperience.${index}.description`}
                                 as="textarea"
                                 rows="3"
-                                className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-blue-500"
+                                className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-pink-500"
                                 placeholder="Describe your responsibilities and achievements..."
                               />
                             </div>
@@ -460,7 +460,7 @@ const ResumeBuilder = () => {
                           endDate: "", 
                           description: "" 
                         })}
-                        className="flex items-center gap-2 text-blue-600 hover:text-blue-700"
+                        className="flex items-center gap-2 text-pink-600 hover:text-pink-700"
                       >
                         <AddIcon /> Add More Experience
                       </button>
@@ -472,7 +472,7 @@ const ResumeBuilder = () => {
               {/* Education Section */}
               <div className="border-b pb-6">
                 <div className="flex items-center gap-2 mb-4">
-                  <SchoolIcon className="text-blue-600" />
+                  <SchoolIcon className="text-pink-600" />
                   <h2 className="text-lg font-semibold text-gray-700">Education</h2>
                 </div>
 
@@ -501,7 +501,7 @@ const ResumeBuilder = () => {
                               <Field
                                 name={`education.${index}.degree`}
                                 type="text"
-                                className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-blue-500"
+                                className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-pink-500"
                               />
                             </div>
                             <div>
@@ -511,7 +511,7 @@ const ResumeBuilder = () => {
                               <Field
                                 name={`education.${index}.schoolName`}
                                 type="text"
-                                className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-blue-500"
+                                className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-pink-500"
                               />
                             </div>
                             <div>
@@ -521,7 +521,7 @@ const ResumeBuilder = () => {
                               <Field
                                 name={`education.${index}.city`}
                                 type="text"
-                                className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-blue-500"
+                                className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-pink-500"
                               />
                             </div>
                             <div>
@@ -531,7 +531,7 @@ const ResumeBuilder = () => {
                               <Field
                                 name={`education.${index}.startDate`}
                                 type="date"
-                                className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-blue-500"
+                                className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-pink-500"
                               />
                             </div>
                             <div>
@@ -541,7 +541,7 @@ const ResumeBuilder = () => {
                               <Field
                                 name={`education.${index}.endDate`}
                                 type="date"
-                                className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-blue-500"
+                                className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-pink-500"
                               />
                             </div>
                           </div>
@@ -556,7 +556,7 @@ const ResumeBuilder = () => {
                           startDate: "", 
                           endDate: "" 
                         })}
-                        className="flex items-center gap-2 text-blue-600 hover:text-blue-700"
+                        className="flex items-center gap-2 text-pink-600 hover:text-pink-700"
                       >
                         <AddIcon /> Add More Education
                       </button>
@@ -576,7 +576,7 @@ const ResumeBuilder = () => {
                       name="skills"
                       as="textarea"
                       rows="4"
-                      className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-blue-500"
+                      className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-pink-500"
                       placeholder="List your key skills..."
                     />
                   </div>
@@ -588,7 +588,7 @@ const ResumeBuilder = () => {
                       name="interests"
                       as="textarea"
                       rows="4"
-                      className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-blue-500"
+                      className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-pink-500"
                       placeholder="List your interests and hobbies..."
                     />
                   </div>
@@ -603,8 +603,8 @@ const ResumeBuilder = () => {
                   className={`
                     px-6 py-2 rounded-lg text-white font-medium
                     ${isSubmitting 
-                      ? 'bg-blue-400 cursor-not-allowed' 
-                      : 'bg-blue-600 hover:bg-blue-700'}
+                      ? 'bg-pink-400 cursor-not-allowed' 
+                      : 'bg-pink-600 hover:bg-pink-700'}
                   `}
                 >
                   {isSubmitting ? 'Generating...' : 'Generate Resume'}

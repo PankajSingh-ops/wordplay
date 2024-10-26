@@ -1,5 +1,9 @@
 "use client"
 import React, { useState } from 'react';
+import { GoogleGenerativeAI } from "@google/generative-ai";
+
+// Initialize Google AI
+const genAI = new GoogleGenerativeAI(process.env.NEXT_PUBLIC_GEMINI_API_KEY || '');
 
 const InstagramCaptionGenerator = () => {
   const [loading, setLoading] = useState(false);
@@ -8,7 +12,7 @@ const InstagramCaptionGenerator = () => {
     quoteLength: string;
     background: string;
     isGroupPhoto: string;
-    groupMembers: string[]; // Correctly typed as an array of strings
+    groupMembers: string[];
     gender: string;
     mood: string;
     customMood: string;
@@ -16,24 +20,72 @@ const InstagramCaptionGenerator = () => {
     quoteLength: 'short',
     background: 'none',
     isGroupPhoto: 'no',
-    groupMembers: [], // Initialize as an empty array
+    groupMembers: [],
     gender: '',
     mood: '',
     customMood: '',
   });
-  
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const handleSubmit = async (e:any) => {
+  const createPrompt = (data: typeof formData) => {
+    let prompt = "Create an Instagram caption";
+
+    // Add length specification
+    prompt += ` that is ${data.quoteLength} in length`;
+
+    // Add background context
+    if (data.background && data.background !== 'none') {
+      prompt += ` for a photo taken at/in ${data.background}`;
+    }
+
+    // Add group photo context
+    if (data.isGroupPhoto === 'yes' && data.groupMembers.length > 0) {
+      prompt += ` featuring a group of ${data.groupMembers.length} people`;
+    }
+
+    // Add gender context if provided
+    if (data.gender) {
+      prompt += ` for a ${data.gender} person`;
+    }
+
+    // Add mood context
+    if (data.mood === 'custom' && data.customMood) {
+      prompt += ` with a ${data.customMood} mood`;
+    } else if (data.mood) {
+      prompt += ` with a ${data.mood} mood`;
+    }
+
+    // Add specific requirements
+    prompt += `. The caption should:
+    - Be engaging and authentic
+    - Include relevant emojis
+    - Include 3-4 relevant hashtags
+    - Match the specified mood and context
+    - Feel natural and not overly promotional
+    - Be social media friendly and trending`;
+
+    return prompt;
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    
-    // Simulate API call to Gemini (replace with actual implementation)
+
     try {
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      setGeneratedCaption("Living my best life! 🌟 #blessed #instagram #vibes");
+      // Create the prompt
+      const prompt = createPrompt(formData);
+
+      // Get the Gemini model
+      const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+
+      // Generate content
+      const result = await model.generateContent(prompt);
+      const response = await result.response;
+      const text = response.text();
+
+      setGeneratedCaption(text);
     } catch (error) {
       console.error("Error generating caption:", error);
+      setGeneratedCaption("Sorry, there was an error generating your caption. Please try again.");
     } finally {
       setLoading(false);
     }
