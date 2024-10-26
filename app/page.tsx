@@ -8,6 +8,9 @@ export default function Home() {
    <div onClick={()=>navigate.push("pages/instagramcaptions")}>
     Instagram
    </div>
+   <div onClick={()=>navigate.push("pages/resume")}>
+    Resume
+   </div>
    </>
   );
 }
