@@ -116,13 +116,45 @@ const handleGenerateNames = async () => {
       const text = await response.text();
   
       try {
-        // Attempt to parse JSON
-        const data = JSON.parse(text);
-        const names = data?.names || [];
-        setGeneratedNames(names);
+        // Clean the response text by removing any markdown code block markers
+        const cleanedText = text.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
+        
+        // Find the first '{' and last '}' to extract the JSON object
+        const startIndex = cleanedText.indexOf('{');
+        const endIndex = cleanedText.lastIndexOf('}') + 1;
+        
+        if (startIndex === -1 || endIndex === 0) {
+          throw new Error("No valid JSON object found in response");
+        }
+        
+        const jsonStr = cleanedText.slice(startIndex, endIndex);
+        
+        // Parse the cleaned JSON
+        const data = JSON.parse(jsonStr);
+        
+        // Validate the expected structure
+        if (!data.names || !Array.isArray(data.names)) {
+          throw new Error("Response doesn't contain the expected 'names' array");
+        }
+        
+        // Validate each name object
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const validNames = data.names.filter((name: { name: any; meaning: any; significance: any; }) => 
+          name &&
+          typeof name.name === 'string' &&
+          typeof name.meaning === 'string' &&
+          typeof name.significance === 'string'
+        );
+        
+        if (validNames.length === 0) {
+          throw new Error("No valid name entries found in response");
+        }
+        
+        setGeneratedNames(validNames);
       } catch (jsonError) {
         console.error("Failed to parse JSON:", jsonError);
-        alert("Received response in an unexpected format.");
+        console.log("Raw response:", text); // For debugging
+        alert("Failed to process the generated names. Please try again.");
       }
     } catch (error) {
       console.error("Error generating names:", error);
