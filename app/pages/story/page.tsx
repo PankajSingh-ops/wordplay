@@ -1,7 +1,7 @@
 "use client"
 import React, { useState } from 'react';
 import Select from 'react-select';
-import { GoogleGenerativeAI } from "@google/generative-ai";
+import { GoogleGenerativeAI, HarmCategory, HarmBlockThreshold } from "@google/generative-ai";
 import { 
   RefreshRounded, 
   ContentCopyRounded,
@@ -176,8 +176,37 @@ The story should engage young readers while maintaining appropriate content and 
     setLoading(true);
     try {
       const prompt = createPrompt(formData);
-      const model = genAI.getGenerativeModel({ model: "gemini-pro" });
-      const result = await model.generateContent(prompt);
+      const model = genAI.getGenerativeModel({ 
+        model: "gemini-pro",
+        safetySettings: [
+            {
+              category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT,
+              threshold: HarmBlockThreshold.BLOCK_NONE
+            },
+            {
+              category: HarmCategory.HARM_CATEGORY_HARASSMENT,
+              threshold: HarmBlockThreshold.BLOCK_NONE
+            },
+            {
+              category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT,
+              threshold: HarmBlockThreshold.BLOCK_NONE
+            },
+            {
+              category: HarmCategory.HARM_CATEGORY_HATE_SPEECH,
+              threshold: HarmBlockThreshold.BLOCK_NONE
+            }
+          ]
+      });
+
+      const result = await model.generateContent({
+        contents: [{ role: 'user', parts: [{ text: prompt }] }],
+        generationConfig: {
+          temperature: 0.7,
+          topK: 40,
+          topP: 0.95,
+          maxOutputTokens: 2048,
+        },
+      });
       const response = await result.response;
       const text = await response.text();
       setGeneratedStory(text);
