@@ -118,7 +118,9 @@ export default function SpeechWriterGenerator() {
     { value: 'italian', label: 'Italian' },
     { value: 'portuguese', label: 'Portuguese' },
     { value: 'chinese', label: 'Chinese' },
-    { value: 'japanese', label: 'Japanese' }
+    { value: 'japanese', label: 'Japanese' },
+    { value: 'hindi', label: 'Hindi' }
+
   ];
 
   const specialElementOptions: OptionType[] = [

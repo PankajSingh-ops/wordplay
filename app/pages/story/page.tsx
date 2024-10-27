@@ -110,7 +110,9 @@ export default function StoryGenerator() {
     { value: 'spanish', label: 'Spanish' },
     { value: 'french', label: 'French' },
     { value: 'german', label: 'German' },
-    { value: 'italian', label: 'Italian' }
+    { value: 'italian', label: 'Italian' },
+    { value: 'hindi', label: 'Hindi' }
+
   ];
 
   const createPrompt = (data: FormDataType): string => {
