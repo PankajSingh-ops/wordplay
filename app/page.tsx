@@ -15,7 +15,8 @@ import {
   Article,
   Message,
   FormatQuote,
-  Psychology
+  Psychology,
+  MailOutline
 } from '@mui/icons-material';
 
 const features = [
@@ -110,7 +111,15 @@ const features = [
     icon: <Psychology />,
     description: "Generate writing prompts and creative ideas",
     color: "from-cyan-500 to-teal-600"
+  },
+  {
+    title: "Letter Generator",
+    path: "pages/letter",
+    icon: <MailOutline />,
+    description: "Generate professional and personalized letters for any purpose",
+    color: "from-blue-600 to-blue-800"
   }
+  
 ];
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
