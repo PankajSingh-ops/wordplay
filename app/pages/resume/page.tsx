@@ -185,15 +185,25 @@ const MainPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 py-8 px-4">
-      <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-6">
+      <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-4 sm:p-6">
         <div className="flex items-center gap-2 mb-6">
           <DescriptionIcon className="text-pink-600 text-3xl" />
           <h1 className="text-2xl font-bold text-gray-800">Resume Builder</h1>
         </div>
 
-        {/* Progress Bar */}
+        {/* Progress Bar and Steps - Responsive Version */}
         <div className="mb-8">
-          <div className="flex justify-between mb-2">
+          {/* Mobile View: Simplified Steps Display */}
+          <div className="sm:hidden mb-4">
+            <div className="flex items-center justify-center">
+              <span className="text-pink-600 font-medium">
+                Step {currentPage} of {steps.length}: {steps[currentPage - 1]}
+              </span>
+            </div>
+          </div>
+
+          {/* Desktop View: Full Steps Display */}
+          <div className="hidden sm:flex justify-between mb-2">
             {steps.map((step, index) => (
               <div
                 key={step}
@@ -205,10 +215,12 @@ const MainPage: React.FC = () => {
                 >
                   {index + 1}
                 </div>
-                <span className="ml-2">{step}</span>
+                <span className="ml-2 text-sm lg:text-base">{step}</span>
               </div>
             ))}
           </div>
+
+          {/* Progress Bar */}
           <div className="relative pt-1">
             <div className="overflow-hidden h-2 mb-4 text-xs flex rounded bg-gray-100">
               <div
@@ -220,7 +232,7 @@ const MainPage: React.FC = () => {
         </div>
 
         <Formik<FormValues>
-          key={formikKey} // Add key to force complete reset
+          key={formikKey}
           initialValues={initialValues}
           onSubmit={handleSubmit}
         >
@@ -228,30 +240,33 @@ const MainPage: React.FC = () => {
             <Form className="space-y-6">
               {renderPageContent(values, setFieldValue)}
 
-              {/* Navigation Buttons */}
+              {/* Navigation Buttons - Responsive Version */}
               <div className="flex justify-between pt-6 border-t">
                 {currentPage > 1 && (
                   <button
                     type="button"
                     onClick={() => setCurrentPage(currentPage - 1)}
-                    className="flex items-center gap-2 px-4 py-2 text-pink-600 border border-pink-600 rounded-lg hover:bg-pink-50"
+                    className="flex items-center gap-1 sm:gap-2 px-3 sm:px-4 py-2 text-pink-600 border border-pink-600 rounded-lg hover:bg-pink-50 text-sm sm:text-base"
                   >
-                    <NavigateBeforeIcon /> Previous
+                    <NavigateBeforeIcon className="text-sm sm:text-base" /> 
+                    <span className="hidden sm:inline">Previous</span>
+                    <span className="sm:hidden">Prev</span>
                   </button>
                 )}
                 {currentPage < 4 && (
                   <button
                     type="button"
                     onClick={() => setCurrentPage(currentPage + 1)}
-                    className="flex items-center gap-2 px-4 py-2 bg-pink-600 text-white rounded-lg hover:bg-pink-700 ml-auto"
+                    className="flex items-center gap-1 sm:gap-2 px-3 sm:px-4 py-2 bg-pink-600 text-white rounded-lg hover:bg-pink-700 ml-auto text-sm sm:text-base"
                   >
-                    Next <NavigateNextIcon />
+                    <span>Next</span> 
+                    <NavigateNextIcon className="text-sm sm:text-base" />
                   </button>
                 )}
                 {currentPage === 4 && (
                   <button
                     type="submit"
-                    className="flex items-center gap-2 px-6 py-2 bg-pink-600 text-white rounded-lg hover:bg-pink-700 ml-auto"
+                    className="flex items-center gap-1 sm:gap-2 px-4 sm:px-6 py-2 bg-pink-600 text-white rounded-lg hover:bg-pink-700 ml-auto text-sm sm:text-base"
                   >
                     Generate Resume
                   </button>
